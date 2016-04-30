@@ -13,11 +13,11 @@ function replaceText() {
         var text = child.nodeValue;
         var newText = text.split(" ");
         newText.forEach(function (word, idx) {
-          if (word % 3 % word % 5) {
+          if (word % 3 == 0 && word % 5 == 0) {
             newText[idx] = "fizzbuzz";
-          } else if (word % 5) {
+          } else if (word % 5 == 0) {
             newText[idx] = "buzz";
-          } else if (word % 3) {
+          } else if (word % 3 == 0) {
             newText[idx] = "fizz";
           }
         });
