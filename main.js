@@ -13,22 +13,34 @@ function replaceText() {
         var text = child.nodeValue;
         var newText = text.split(" ");
         newText.forEach(function (word, idx) {
-          if (word % 3 == 0 && word % 5 == 0) {
-            newText[idx] = "fizzbuzz";
-          } else if (word % 5 == 0) {
-            newText[idx] = "buzz";
-          } else if (word % 3 == 0) {
-            newText[idx] = "fizz";
+          if (coercesToNumber(word)) {
+            newText[idx] = fizzbuzzParse(word);
           }
         });
 
         if (text !== newText) {
-          node.replaceChild(document.createTextNode(newText.join(" ")), child);
+          var newNode = document.createTextNode(newText.join(" "));
+          node.replaceChild(newNode, child);
         }
       }
     }
   }
 }
 
-  console.log('hey')
-  replaceText();
+function coercesToNumber (word) {
+  return Number(word) !== 0 && Number(word) === Number(word);
+}
+
+function fizzbuzzParse (word) {
+  if (word % 3 === 0 && word % 5 === 0) {
+    return "fizzbuzz";
+  } else if (word % 5 === 0) {
+    return "buzz";
+  } else if (word % 3 === 0) {
+    return "fizz";
+  } else {
+    return word;
+  }
+}
+
+replaceText();
