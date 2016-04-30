@@ -1,26 +1,34 @@
-function replaceText() {
-  var elements = document.getElementsByTagName('*')
 
-  for (i = 0; i < elements.length; i++) {
-    var node  = elements[i];
+function replaceText() {
+  var elements = document.getElementsByTagName("*");
+
+  for (var i = 0; i < elements.length; i++) {
+    var node = elements[i];
     var children = node.childNodes;
 
-    for (j = 0; j < children.length; j++) {
-      var childNode = children[j];
+    for (var j = 0; j < children.length; j++) {
+      var child = children[j];
 
-      if (childNode.nodeType == 3) {
-        var text = childNode.nodeValue;
-        var newText = text.replace(/Bernie Sanders/gi, 'Birdie Sanders');
+      if (child.nodeType == 3) {
+        var text = child.nodeValue;
+        var newText = text.split(" ");
+        newText.forEach(function (word, idx) {
+          if (word % 3 % word % 5) {
+            newText[idx] = "fizzbuzz";
+          } else if (word % 5) {
+            newText[idx] = "buzz";
+          } else if (word % 3) {
+            newText[idx] = "fizz";
+          }
+        });
 
         if (text !== newText) {
-          node.replaceChild(document.createTextNode(newText),childNode);
+          node.replaceChild(document.createTextNode(newText.join(" ")), child);
         }
       }
     }
   }
 }
 
-
-document.addEventListener('DOMContentLoaded', function() {
+  console.log('hey')
   replaceText();
-});

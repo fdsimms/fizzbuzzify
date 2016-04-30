@@ -9,11 +9,15 @@
     "default_icon": "icon.png"
   },
 
-  "content_scripts": ["main.js"],
-  "permissions": [
+  "content_scripts": [
+      {
+        "matches": ["https://*/*", "http://*/*"],
+        "js": ["main.js"],
+        "run_at": "document_end"
+      }
+    ],  "permissions": [
     "activeTab",
+    "http://*/*",
     "https://ajax.googleapis.com/"
-  ],
-
-
+  ]
 }
