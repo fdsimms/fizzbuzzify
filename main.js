@@ -13,7 +13,7 @@ function replaceText() {
         var text = child.nodeValue;
         var newText = text.split(" ");
         newText.forEach(function (word, idx) {
-          if (coercesToNumber(word)) {
+          if (coercesToNumber(word) && word != 0) {
             newText[idx] = fizzbuzzParse(word);
           }
         });
@@ -28,7 +28,7 @@ function replaceText() {
 }
 
 function coercesToNumber (word) {
-  return Number(word) !== 0 && Number(word) === Number(word);
+  return Number(word) === Number(word);
 }
 
 function fizzbuzzParse (word) {
